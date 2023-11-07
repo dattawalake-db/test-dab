@@ -34,7 +34,7 @@ jobs:
       - name: Run image
         uses: abatilo/actions-poetry@v2
         with:
-          poetry-version: 10.1.0
+          poetry-version: 1.6
 
       # Download the Databricks CLI.
       # See https://github.com/databricks/setup-cli
