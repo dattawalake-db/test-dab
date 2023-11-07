@@ -17,6 +17,12 @@ resources:
           job_cluster_key: job_cluster
           spark_python_task:
             python_file: ../main.py
+          python_wheel_task:
+            package_name: example
+            entry_point: example
+
+          libraries:
+            - whl: ../../dist/*.whl  
         
         - task_key: refresh_pipeline
           depends_on:
