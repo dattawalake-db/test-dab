@@ -14,7 +14,6 @@ include:
   - example/resources/*.yml
 
 
-
 targets:
   # The 'dev' target, used for development purposes.
   # Whenever a developer deploys using 'dev', they get their own copy.

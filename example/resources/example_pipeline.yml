@@ -1,0 +1,9 @@
+# The main pipeline for default_python
+resources:
+  pipelines:
+    example_python_pipeline:
+      name: example_python_pipeline
+      target: example_python_${bundle.environment}
+      libraries:
+        - notebook:
+            path: ../example/dlt_pipeline.py
