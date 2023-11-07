@@ -7,5 +7,3 @@ def get_taxis():
 def main():
   get_taxis().show(5)
 
-if __name__ == '__main__':
-  main()
