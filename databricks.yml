@@ -3,6 +3,10 @@
 bundle:
   name: example
 
+workspace:
+  host: https://dbc-a49c6081-8a5a.cloud.databricks.com/
+
+    
 artifacts:
   default:
     type: whl

@@ -16,23 +16,15 @@ resources:
         - task_key: spark_python_task
           job_cluster_key: job_cluster
           spark_python_task:
-            python_file: ../example/main.py
+            python_file: ../main.py
         
         - task_key: refresh_pipeline
           depends_on:
             - task_key: spark_python_task
           pipeline_task:
-            pipeline_id: ${resources.pipelines.example_python_pipeline.id}
+            pipeline_id: ${resources.pipelines.dtl_pipeline.id}
         
-        - task_key: main_task
-          depends_on:
-            - task_key: refresh_pipeline
-          job_cluster_key: job_cluster
-          python_wheel_task:
-            package_name: example
-            entry_point: main
-          libraries:
-            - whl: ../dist/*.whl
+        
 
       job_clusters:
         - job_cluster_key: job_cluster
