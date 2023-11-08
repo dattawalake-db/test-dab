@@ -10,7 +10,7 @@ resources:
 
       email_notifications:
         on_failure:
-          - dattatraya.walake@databricks.com
+          - <your email id>
 
       tasks:
         - task_key: spark_python_task
