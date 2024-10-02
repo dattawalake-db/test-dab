@@ -1,0 +1,31 @@
+bundle:
+  name: my-bundle
+  resources:
+    jobs:
+      pre-deploy-tests:
+        name: pre-deploy-tests
+        tasks:
+          - task_key: run-tests
+            notebook_task:
+              notebook_path: /path/to/test_notebook
+          - task_key: run-python-tests
+            spark_python_task:
+              python_file: ./path/to/test_script.py
+      deploy-job:
+        name: deploy-job
+        tasks:
+          - task_key: deploy
+            notebook_task:
+              notebook_path: /path/to/deploy_notebook
+  targets:
+    dev:
+      default: true
+    prod:
+      resources:
+        jobs:
+          deploy-job:
+            name: deploy-job
+            tasks:
+              - task_key: deploy
+                notebook_task:
+                  notebook_path: /path/to/deploy_notebook

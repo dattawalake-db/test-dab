@@ -1,0 +1,53 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - release
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Databricks CLI
+        run: |
+          pip install databricks-cli
+          databricks configure --token
+      - name: Run pre-deploy tests
+        run: |
+          databricks bundle validate
+          databricks bundle deploy -t dev
+          databricks bundle run -t dev pre-deploy-tests
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Databricks CLI
+        run: |
+          pip install databricks-cli
+          databricks configure --token
+      - name: Build wheel file
+        run: |
+          python setup.py bdist_wheel
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Databricks CLI
+        run: |
+          pip install databricks-cli
+          databricks configure --token
+      - name: Deploy to production
+        if: github.ref == 'refs/heads/release'
+        run: |
+          databricks bundle deploy -t prod
+          databricks bundle run -t prod deploy-job

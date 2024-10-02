@@ -4,7 +4,7 @@ bundle:
   name: example
 
 workspace:
-  host: https://<your workspace host url>
+  host: https://e2-demo-field-eng.cloud.databricks.com/
 
     
 artifacts:
@@ -28,7 +28,7 @@ targets:
     mode: development
     default: true
     workspace:
-      host: https://<your workspace host url>
+      host: https://e2-demo-field-eng.cloud.databricks.com/
 
   # Optionally, there could be a 'staging' target here.
   # (See Databricks docs on CI/CD at https://docs.databricks.com/dev-tools/bundles/index.html.)
@@ -45,10 +45,10 @@ targets:
     # to a path that is not specific to the current user.
     mode: production
     workspace:
-      host: https://<your workspace host url>
+      host: https://e2-demo-field-eng.cloud.databricks.com/
       root_path: /Shared/.bundle/prod/${bundle.name}
     run_as:
       # This runs as username@company.com in production. Alternatively,
       # a service principal could be used here using service_principal_name
       # (see Databricks documentation).
-      user_name: <your userid e.g. email id>
+      user_name: dattatraya.walake@databricks.com
